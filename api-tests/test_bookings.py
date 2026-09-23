@@ -1,5 +1,6 @@
 import requests
-import conftest  
+import conftest 
+import pytest 
 
 
 BASE_URL = "https://restful-booker.herokuapp.com"
@@ -63,3 +64,17 @@ def test_delete_booking_without_auth(created_booking):
         f"{BASE_URL}/booking/{booking_id}"
     )
     assert response.status_code == 403
+
+
+@pytest.mark.parametrize("firstname", ["John", "Alice", "Mohamed"])
+def test_create_booking_with_different_names(firstname):
+    payload = {
+        "firstname": firstname,
+        "lastname": "Doe",
+        "totalprice": 150,
+        "depositpaid": True,
+        "bookingdates": {"checkin": "2025-01-01", "checkout": "2025-01-05"}
+    }
+    response = requests.post(f"{BASE_URL}/booking", json=payload)
+    assert response.status_code == 200
+    assert response.json()["booking"]["firstname"] == firstname
