@@ -8,11 +8,11 @@ def test_signup_step_one():
     driver.get("https://automationexercise.com/login")
 
     random_number = random.randint(1, 1000000)
-    unique_email = f"testuser{random_number}@example.com"
+    unique_email = f"mennabahaa.qa.test{random_number}@example.com"
 
     #first page
     name_field = driver.find_element(By.CSS_SELECTOR, "input[data-qa='signup-name']")
-    name_field.send_keys("Test one")
+    name_field.send_keys("Test QA")
     email_field = driver.find_element(By.CSS_SELECTOR, "input[data-qa='signup-email']")
     email_field.send_keys(unique_email)
 
