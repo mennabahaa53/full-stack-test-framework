@@ -1,9 +1,7 @@
-from selenium import webdriver
 from pages.signup_page import SignupPage
 import random
 
-def test_full_signup():
-    driver = webdriver.Chrome()
+def test_full_signup(driver):
     driver.get("https://automationexercise.com/login")
 
     random_number = random.randint(1, 1000000)
@@ -27,4 +25,3 @@ def test_full_signup():
     )
 
     assert "account_created" in driver.current_url.lower()
-    driver.quit()

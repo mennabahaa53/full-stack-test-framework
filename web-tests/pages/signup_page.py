@@ -1,6 +1,8 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class SignupPage:
     def __init__(self, driver):
@@ -32,6 +34,8 @@ class SignupPage:
 
     def complete_account_details(self, password, day, month, year, first_name, last_name,
                                    address, country, state, city, zipcode, mobile):
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(EC.presence_of_element_located(self.TITLE_MR))
         self.driver.find_element(*self.TITLE_MR).click()
         self.driver.find_element(*self.PASSWORD_INPUT).send_keys(password)
 
