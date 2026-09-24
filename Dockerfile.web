@@ -1,0 +1,12 @@
+FROM selenium/standalone-chrome:latest
+
+USER root
+
+WORKDIR /app
+
+COPY web-tests/ .
+
+RUN apt-get update && apt-get install -y python3-pip
+RUN pip install pytest selenium --break-system-packages
+
+CMD ["pytest"]
