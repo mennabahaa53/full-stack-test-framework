@@ -1,6 +1,7 @@
 from pages.signup_page import SignupPage
 import random
 
+
 def test_full_signup(driver):
     driver.get("https://automationexercise.com/login")
 
